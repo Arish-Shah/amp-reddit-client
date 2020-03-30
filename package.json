@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Arish-Shah/amp-reddit-client#readme",
   "dependencies": {
-    "@arish-shah/amp": "^0.2.2"
+    "@arish-shah/amp": "^0.2.3"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.4"
