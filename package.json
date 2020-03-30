@@ -1,0 +1,30 @@
+{
+  "name": "amp-reddit-client",
+  "version": "1.0.0",
+  "description": "Amp-js Powered Reddit client",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html --public-url --out-dir build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arish-Shah/amp-reddit-client.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arish-Shah/amp-reddit-client/issues"
+  },
+  "homepage": "https://github.com/Arish-Shah/amp-reddit-client#readme",
+  "dependencies": {
+    "@arish-shah/amp": "^0.2.2"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "browserslist": [
+    "last 1 Chrome version"
+  ]
+}
