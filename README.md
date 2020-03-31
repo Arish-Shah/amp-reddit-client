@@ -1,6 +1,6 @@
 # amp-reddit-client
 
-_Amp-js Powered Reddit client._
+_amp-js Powered Reddit client._
 
 ### Deploy Status
 
