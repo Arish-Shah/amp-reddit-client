@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel src/index.html",
     "prebuild": "rm -rf docs",
-    "build": "parcel build src/index.html --public-url ./ --out-dir docs --no-source-maps"
+    "build": "parcel build src/index.html --out-dir docs --no-source-maps"
   },
   "repository": {
     "type": "git",
