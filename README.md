@@ -21,4 +21,4 @@ Checkout this repo, install dependencies, then start the gulp process with the f
 
 #### Demo
 
-https://amp-reddit-client.netlify.com
+https://amp-reddit-client.netlify.com or https://arish-shah.github.io/amp-reddit-client/
