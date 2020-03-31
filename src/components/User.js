@@ -1,5 +1,5 @@
 import { html } from "@arish-shah/amp";
-import { actualDate } from "../util.js";
+import { actualDate } from "../util/date";
 
 const User = info => {
   const [actual, relative] = actualDate(info.created_utc);

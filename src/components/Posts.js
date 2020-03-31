@@ -1,5 +1,5 @@
 import { html } from "@arish-shah/amp";
-import { dateFormat } from "../util.js";
+import { dateFormat } from "../util/date";
 
 const AllPosts = posts => html`
   <ol>
@@ -22,10 +22,9 @@ export const Item = post => {
 
   let awards = null;
   if (+post.total_awards_received > 0) {
-    let awardText = +post.total_awards_received === 1 ? "award" : "awards";
     awards = html`
       <span>|</span>
-      <span>${post.total_awards_received} ${awardText}</span>
+      <span>${post.total_awards_received}🎖</span>
     `;
   }
 

@@ -1,9 +1,11 @@
 import { render } from "@arish-shah/amp";
 
-import Posts from "./components/Posts.js";
-import Comments from "./components/Comments.js";
-import User from "./components/User.js";
-import { Error, Loading } from "./components/Display.js";
+import Posts from "./components/Posts";
+import Comments from "./components/Comments";
+import User from "./components/User";
+import About from "./components/About";
+import { Error, Loading } from "./components/Display";
+import { getData } from "./util/cache";
 
 const root = document.getElementById("root");
 
@@ -17,6 +19,8 @@ const hashChangeHandler = () => {
     getComments(hash);
   } else if (hash.indexOf("user") > -1) {
     getUser(hash);
+  } else if (hash.indexOf("about") > -1) {
+    render(About, root);
   } else {
     getPosts(`r/${hash}`);
   }
@@ -24,14 +28,7 @@ const hashChangeHandler = () => {
 
 const getPosts = async name => {
   try {
-    let response = localStorage.getItem(name);
-    if (response) {
-      response = JSON.parse(response);
-    } else {
-      response = await fetch(`https://www.reddit.com/${name}.json`);
-      response = await response.json();
-      localStorage.setItem(name, JSON.stringify(response));
-    }
+    let response = await getData(`https://www.reddit.com/${name}.json`);
     render(Posts(response.data.children), root);
   } catch (e) {
     render(Error(e), root);
@@ -40,8 +37,7 @@ const getPosts = async name => {
 
 const getComments = async hash => {
   try {
-    let response = await fetch(`https://www.reddit.com/${hash}.json`);
-    response = await response.json();
+    let response = await getData(`https://www.reddit.com/${hash}.json`);
     render(Comments(response), root);
   } catch (e) {
     render(Error(e), root);
@@ -50,8 +46,7 @@ const getComments = async hash => {
 
 const getUser = async hash => {
   try {
-    let response = await fetch(`https://www.reddit.com/${hash}/about.json`);
-    response = await response.json();
+    let response = await getData(`https://www.reddit.com/${hash}/about.json`);
     render(User(response.data), root);
   } catch (e) {
     render(Error(e), root);

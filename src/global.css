@@ -5,6 +5,7 @@
 html,
 body {
   position: relative;
+  overflow-x: hidden;
 }
 
 body {
@@ -70,10 +71,9 @@ dt {
 */
 main {
   width: 90%;
-  max-width: 1024px;
+  max-width: 1280px;
   margin: 0 auto;
   background: #f7f7f7;
-  font-size: 0.85rem;
 }
 
 header {
@@ -83,6 +83,7 @@ header {
   color: #fff;
   padding: 0.5rem;
   color: #ffa500;
+  font-size: 0.8rem;
 }
 
 header span {
@@ -105,6 +106,7 @@ header span:first-of-type i {
 /* Posts */
 
 #root ol li {
+  font-size: 0.85rem;
   padding: 0.5rem 1rem 0.5rem 0;
 }
 
@@ -118,6 +120,7 @@ header span:first-of-type i {
 
 #root #meta {
   margin-top: 5px;
+  font-size: 0.85rem;
   color: #666;
 }
 
@@ -133,6 +136,7 @@ header span:first-of-type i {
 
 #root #comment {
   padding-left: 1rem;
+  font-size: 0.8rem;
   color: #666;
 }
 
@@ -152,8 +156,8 @@ header span:first-of-type i {
 }
 
 #root #user #details {
-  padding-left: 1.25rem;
-  width: 66%;
+  padding: 0 1.25rem;
+  font-size: 0.8rem;
 }
 
 #root #user .img-wrapper {
@@ -161,6 +165,7 @@ header span:first-of-type i {
   float: left;
   max-width: 150px;
   background: #e7e7e7;
+  font-size: 0.75rem;
 }
 
 #root #user .img-wrapper img {
@@ -169,7 +174,19 @@ header span:first-of-type i {
 }
 
 #root #user #details #name {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
+}
+
+#root #about {
+  padding: 0 1.25rem 1rem 1.25rem;
+}
+
+#root #about p {
+  font-size: 0.8rem;
+}
+
+#root #about a {
+  color: #007bff;
 }
 
 footer {
@@ -177,6 +194,7 @@ footer {
   padding: 0.5rem;
   border-top: 1px solid #e7e7e7;
   display: flex;
+  font-size: 0.8rem;
   justify-content: space-between;
 }
 
@@ -188,10 +206,6 @@ footer {
 
   main {
     width: 100%;
-  }
-
-  main header {
-    font-size: 1.15rem;
   }
 
   #root #user .img-wrapper {

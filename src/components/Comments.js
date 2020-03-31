@@ -16,7 +16,7 @@ const Comments = response => {
 
 const Comment = info => {
   let replies;
-  let moreText = "[-]";
+  let moreText = "[—]";
   if (info.replies) {
     moreText = `[${info.replies.data.children.length}]`;
     replies = info.replies.data.children.map(reply => {
