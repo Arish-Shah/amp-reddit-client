@@ -6,7 +6,9 @@
   "scripts": {
     "start": "parcel src/index.html",
     "prebuild": "rm -rf docs",
-    "build": "parcel build src/index.html --public-url ./ --out-dir docs"
+    "build": "parcel build src/index.html --public-url ./ --out-dir docs",
+    "predeploy": "npm run build",
+    "deploy": "git push origin master"
   },
   "repository": {
     "type": "git",
@@ -20,7 +22,7 @@
   },
   "homepage": "https://github.com/Arish-Shah/amp-reddit-client#readme",
   "dependencies": {
-    "@arish-shah/amp": "^0.2.3"
+    "@arish-shah/amp": "^0.3.7"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.4"

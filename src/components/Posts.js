@@ -1,14 +1,9 @@
-import { html } from "@arish-shah/amp";
-import { dateFormat } from "../util/date";
+import { html } from '@arish-shah/amp';
+import { dateFormat } from '../util/date';
 
 const AllPosts = posts => html`
   <ol>
-    ${posts.map(
-      post =>
-        html`
-          <li>${Item(post)}</li>
-        `
-    )}
+    ${posts.map(post => html` <li>${Item(post)}</li> `)}
   </ol>
 `;
 
@@ -16,7 +11,7 @@ export const Item = post => {
   post = post.data;
   let titleURL = new URL(post.url);
   titleURL =
-    titleURL.hostname.indexOf("www") > -1
+    titleURL.hostname.indexOf('www') > -1
       ? titleURL.hostname.substring(4)
       : titleURL.hostname;
 
@@ -29,7 +24,7 @@ export const Item = post => {
   }
 
   let commentURL = post.permalink;
-  let index = commentURL.indexOf("/comments/");
+  let index = commentURL.indexOf('/comments/');
   commentURL = commentURL.substring(index);
 
   let createdDate = dateFormat(post.created_utc);
