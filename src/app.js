@@ -39,14 +39,16 @@ const Root = Amp.component('amp-root', {
     updateCache(url) {
       if (!this.cache[url]) {
         this.current.loading = true;
-        getData(url).then(response => {
-          this.cache[url] = response;
-          this.current = {
-            hash: window.location.hash,
-            loading: false,
-            data: this.cache[url]
-          };
-        });
+        getData(url)
+          .then(response => {
+            this.cache[url] = response;
+            this.current = {
+              hash: window.location.hash,
+              loading: false,
+              data: this.cache[url]
+            };
+          })
+          .catch(error => console.log(error));
       } else {
         this.current = {
           hash: window.location.hash,
@@ -70,7 +72,7 @@ const Root = Amp.component('amp-root', {
         } else if (hash.indexOf('/comments/') > -1) {
           return html`
             ${progress}
-            <amp-commments-page></amp-commments-page>
+            <amp-commments-page .data=${this.current.data}></amp-commments-page>
           `;
         } else if (hash.indexOf('/about') > -1) {
           return html`

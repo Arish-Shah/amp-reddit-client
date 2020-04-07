@@ -17,7 +17,7 @@ const PostItem = Amp.component('amp-post-item', {
     } = this.props.post;
     return html`
       <h2><a href=${url}>${title}</a> <small>(${domain})</small></h2>
-      <p class="muted">
+      <p class="meta">
         ${ups} upvotes by
         <a href=${`#/user/${author}`}>${author}</a>
         ${dateFormat(created_utc)} |
