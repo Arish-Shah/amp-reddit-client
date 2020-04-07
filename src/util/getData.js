@@ -4,9 +4,9 @@ export const getData = async url => {
   return response;
 };
 
-export const getURL = passedHash => {
+export const getURL = () => {
   const reddit = 'https://www.reddit.com';
-  const hash = passedHash || window.location.hash.slice(2);
+  const hash = window.location.hash.slice(2);
 
   if (hash.indexOf('user/') > -1) {
     return `${reddit}/${hash}/about.json`;

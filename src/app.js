@@ -3,6 +3,7 @@ import Amp, { html } from '@arish-shah/amp';
 import Feed from './pages/Feed';
 import About from './pages/About';
 import User from './pages/User';
+import Comments from './pages/Comments';
 
 import Navbar from './components/Navbar';
 import Progress from './components/Progress';
@@ -23,7 +24,6 @@ const Root = Amp.component('amp-root', {
       window.addEventListener('load', this.router);
       window.addEventListener('hashchange', this.router);
     },
-
     router() {
       let hash = window.location.hash;
       if (hash.indexOf('/about') > -1) {
@@ -70,7 +70,7 @@ const Root = Amp.component('amp-root', {
         } else if (hash.indexOf('/comments/') > -1) {
           return html`
             ${progress}
-            <amp-commment-page></amp-commment-page>
+            <amp-commments-page></amp-commments-page>
           `;
         } else if (hash.indexOf('/about') > -1) {
           return html`
@@ -88,8 +88,10 @@ const Root = Amp.component('amp-root', {
       }
     }
   },
-  components: [Navbar, Progress, Feed, About, User],
+  components: [Navbar, Progress, Feed, Comments, About, User],
   template() {
+    document.title = 'amp-js Reddit Client';
+
     return html`
       <amp-navbar></amp-navbar>
       <main class="page">
