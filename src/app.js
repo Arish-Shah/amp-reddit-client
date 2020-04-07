@@ -1,65 +1,102 @@
-import { render } from '@arish-shah/amp';
+import Amp, { html } from '@arish-shah/amp';
 
-import Posts from './components/Posts';
-import Comments from './components/Comments';
-import User from './components/User';
-import About from './components/About';
-import { Error, Loading } from './components/Display';
-import { getData } from './util/cache';
+import Feed from './pages/Feed';
+import About from './pages/About';
+import User from './pages/User';
 
-const root = document.getElementById('root');
+import Navbar from './components/Navbar';
+import Progress from './components/Progress';
+import { getURL, getData } from './util/getData';
 
-const hashChangeHandler = () => {
-  render(Loading, root);
-  const hash = window.location.hash.slice(2);
+const Root = Amp.component('amp-root', {
+  data: {
+    cache: {},
+    error: null,
+    current: {
+      loading: true,
+      hash: '',
+      data: null
+    }
+  },
+  methods: {
+    onmount() {
+      window.addEventListener('load', this.router);
+      window.addEventListener('hashchange', this.router);
+    },
 
-  if (hash === '') {
-    getPosts('hot');
-  } else if (hash.indexOf('comments') > -1) {
-    getComments(hash);
-  } else if (hash.indexOf('user') > -1) {
-    getUser(hash);
-  } else if (hash.indexOf('about') > -1) {
-    render(About, root);
-  } else {
-    getPosts(`r/${hash}`);
+    router() {
+      let hash = window.location.hash;
+      if (hash.indexOf('/about') > -1) {
+        this.current = {
+          hash,
+          data: {},
+          loading: false
+        };
+      } else {
+        this.updateCache(getURL());
+      }
+    },
+    updateCache(url) {
+      if (!this.cache[url]) {
+        this.current.loading = true;
+        getData(url).then(response => {
+          this.cache[url] = response;
+          this.current = {
+            hash: window.location.hash,
+            loading: false,
+            data: this.cache[url]
+          };
+        });
+      } else {
+        this.current = {
+          hash: window.location.hash,
+          loading: false,
+          data: this.cache[url]
+        };
+      }
+    },
+    getPage() {
+      if (this.current.data) {
+        const hash = this.current.hash;
+        const progress = this.current.loading
+          ? html`<amp-progress></amp-progress>`
+          : null;
+
+        if (hash.indexOf('/user/') > -1) {
+          return html`
+            ${progress}
+            <amp-user-page .details=${this.current.data}></amp-user-page>
+          `;
+        } else if (hash.indexOf('/comments/') > -1) {
+          return html`
+            ${progress}
+            <amp-commment-page></amp-commment-page>
+          `;
+        } else if (hash.indexOf('/about') > -1) {
+          return html`
+            ${progress}
+            <amp-about-page></amp-about-page>
+          `;
+        } else {
+          return html`
+            ${progress}
+            <amp-feed-page .data=${this.current.data}></amp-feed-page>
+          `;
+        }
+      } else {
+        return html`<amp-progress></amp-progress>`;
+      }
+    }
+  },
+  components: [Navbar, Progress, Feed, About, User],
+  template() {
+    return html`
+      <amp-navbar></amp-navbar>
+      <main class="page">
+        ${this.getPage()}
+      </main>
+    `;
   }
-};
-
-const getPosts = async name => {
-  try {
-    let response = await getData(`https://www.reddit.com/${name}.json`);
-    render(Posts(response.data.children), root);
-  } catch (e) {
-    render(Error(e), root);
-  }
-};
-
-const getComments = async hash => {
-  try {
-    let response = await getData(`https://www.reddit.com/${hash}.json`);
-    render(Comments(response), root);
-  } catch (e) {
-    render(Error(e), root);
-  }
-};
-
-const getUser = async hash => {
-  try {
-    let response = await getData(`https://www.reddit.com/${hash}/about.json`);
-    render(User(response.data), root);
-  } catch (e) {
-    render(Error(e), root);
-  }
-};
-
-window.addEventListener('hashchange', hashChangeHandler);
-window.addEventListener('load', hashChangeHandler);
-document.getElementById('refresh').addEventListener('click', () => {
-  localStorage.clear();
-  hashChangeHandler();
 });
-document.getElementById('home').addEventListener('click', () => {
-  window.location.hash = '#/';
-  hashChangeHandler();
-});
+
+Root.generate();

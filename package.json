@@ -8,7 +8,8 @@
     "prebuild": "rm -rf docs",
     "build": "parcel build src/index.html --public-url ./ --out-dir docs",
     "predeploy": "npm run build",
-    "deploy": "git push origin master"
+    "deploy": "git push origin master",
+    "clean": "rm -rf dist .cache"
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,8 @@
     "@arish-shah/amp": "^0.3.7"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.3"
   },
   "browserslist": [
     "last 1 Chrome version"
