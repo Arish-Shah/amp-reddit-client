@@ -37,8 +37,8 @@ const FeedPage = Amp.component('amp-feed-page', {
       ${posts.map(
         (post, index) =>
           html`<amp-post-item
-            .index=${index}
-            .post=${post.data}
+            :index=${index}
+            :post=${post.data}
           ></amp-post-item>`
       )}
     `;

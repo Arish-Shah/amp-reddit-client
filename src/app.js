@@ -10,9 +10,15 @@ import Progress from './components/Progress';
 import { getURL, getData } from './util/getData';
 
 const Root = Amp.component('amp-root', {
+  onmount() {
+    window.addEventListener('load', this.router);
+    window.addEventListener('hashchange', this.router);
+  },
+  onupdate() {
+    console.log('updated');
+  },
   data: {
     cache: {},
-    error: null,
     current: {
       loading: true,
       hash: '',
@@ -20,10 +26,6 @@ const Root = Amp.component('amp-root', {
     }
   },
   methods: {
-    onmount() {
-      window.addEventListener('load', this.router);
-      window.addEventListener('hashchange', this.router);
-    },
     router() {
       let hash = window.location.hash;
       if (hash.indexOf('/about') > -1) {
@@ -67,12 +69,12 @@ const Root = Amp.component('amp-root', {
         if (hash.indexOf('/user/') > -1) {
           return html`
             ${progress}
-            <amp-user-page .details=${this.current.data}></amp-user-page>
+            <amp-user-page :details=${this.current.data}></amp-user-page>
           `;
         } else if (hash.indexOf('/comments/') > -1) {
           return html`
             ${progress}
-            <amp-commments-page .data=${this.current.data}></amp-commments-page>
+            <amp-commments-page :data=${this.current.data}></amp-commments-page>
           `;
         } else if (hash.indexOf('/about') > -1) {
           return html`
@@ -82,7 +84,7 @@ const Root = Amp.component('amp-root', {
         } else {
           return html`
             ${progress}
-            <amp-feed-page .data=${this.current.data}></amp-feed-page>
+            <amp-feed-page :data=${this.current.data}></amp-feed-page>
           `;
         }
       } else {

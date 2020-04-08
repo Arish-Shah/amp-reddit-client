@@ -40,7 +40,7 @@ const CommentsPage = Amp.component('amp-commments-page', {
         </p>
         ${selftext}
       </article>
-      <amp-comments .data=${commentDetails}></amp-comments>
+      <amp-comments :data=${commentDetails}></amp-comments>
     `;
   }
 });

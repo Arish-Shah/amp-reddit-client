@@ -147,6 +147,7 @@ amp-navbar {
   position: relative;
   padding: 0.5em 2em;
   max-width: 56em;
+  overflow-x: hidden;
 
   h1 {
     font-weight: normal;
@@ -244,7 +245,7 @@ amp-commments-page {
 
     .meta {
       font-size: 0.8em;
-      font-weight: 200;
+      font-weight: 300;
 
       * {
         color: $off-black;
@@ -270,7 +271,17 @@ amp-replies {
     }
   }
 
-  .children {
+  ul {
     list-style-type: none;
+  }
+
+  .children {
+    padding: 0 0 0 1em;
+  }
+
+  @media (min-width: 720px) {
+    .children {
+      padding: 0 0 0 2em;
+    }
   }
 }

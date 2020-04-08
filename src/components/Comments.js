@@ -14,21 +14,6 @@ const Replies = Amp.component('amp-replies', {
     replyBody.className = 'body';
     replyBody.innerHTML = parse(body_html);
 
-    let children;
-    if (!!data.replies) {
-      children = html`
-        <ul class="children">
-          ${data.replies.data.children.map(child => {
-            if ('ups' in child.data) {
-              return html`<li>
-                <amp-replies .data=${child.data}></amp-replies>
-              </li>`;
-            }
-          })}
-        </ul>
-      `;
-    }
-
     return html`
       <span class="meta">
         <a href=${`#/user/${author}`}>${author}</a>
@@ -48,7 +33,7 @@ const Comments = Amp.component('amp-comments', {
 
     return html`
       ${replies.map(
-        reply => html`<amp-replies .data=${reply.data}></amp-replies>`
+        reply => html`<amp-replies :data=${reply.data}></amp-replies>`
       )}
     `;
   }
