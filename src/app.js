@@ -14,9 +14,6 @@ const Root = Amp.component('amp-root', {
     window.addEventListener('load', this.router);
     window.addEventListener('hashchange', this.router);
   },
-  onupdate() {
-    console.log('updated');
-  },
   data: {
     cache: {},
     current: {
