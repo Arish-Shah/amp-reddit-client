@@ -1,9 +1,9 @@
 import Amp, { html } from '@arish-shah/amp';
 
-import Feed from './pages/Feed';
-import About from './pages/About';
-import User from './pages/User';
-import Comments from './pages/Comments';
+import FeedPage from './pages/Feed';
+import AboutPage from './pages/About';
+import UserPage from './pages/User';
+import CommentsPage from './pages/Comments';
 
 import Navbar from './components/Navbar';
 import Progress from './components/Progress';
@@ -90,7 +90,7 @@ const Root = Amp.component('amp-root', {
       }
     }
   },
-  components: [Navbar, Progress, Feed, Comments, About, User],
+  components: [Navbar, Progress, FeedPage, CommentsPage, AboutPage, UserPage],
   template() {
     document.title = 'amp-js Reddit Client';
 

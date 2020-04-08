@@ -2,6 +2,8 @@
 $black: #333;
 $off-black: #666;
 $white: #fff;
+$off-white: #f4f4f4;
+$offest-white: #eee;
 $orange: #ff6600;
 $light-orange: #ffdac1;
 
@@ -28,6 +30,12 @@ body {
   font-size: 100%;
   overflow-x: hidden;
   line-height: 1.5;
+}
+
+blockquote {
+  border-left: 0.25em solid $offest-white;
+  padding-left: 1em;
+  margin-left: 0em;
 }
 
 button,
@@ -81,7 +89,7 @@ amp-navbar {
 
     .icon {
       font-size: 1.7em;
-      margin-right: 0.5em;
+      margin-right: 0.6em;
       background: $orange;
       color: $white;
       width: 35px;
@@ -126,7 +134,7 @@ amp-navbar {
         content: '';
         width: calc(100% - 1em);
         height: 2px;
-        background-color: #ff6600;
+        background-color: $orange;
         display: block;
         bottom: 0;
       }
@@ -186,8 +194,8 @@ amp-feed-page {
       }
     }
 
-    p.meta {
-      margin-top: 0.5em;
+    .meta {
+      margin-top: 0.6em;
       font-size: 0.8em;
       font-weight: 300;
       color: $off-black;
@@ -214,23 +222,55 @@ amp-feed-page {
 amp-commments-page {
   display: block;
 
-  h1 {
-    font-weight: 500 !important;
-    a {
-      text-decoration: none;
+  .item {
+    border-bottom: 1em solid $off-white;
+    margin: 0 -2em 2em;
+    padding: 0 2em 2em;
+
+    h1 {
+      font-size: 2em;
+      font-weight: 500 !important;
+      margin-bottom: 0.4em;
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    small {
+      font-size: 14px;
+      margin-bottom: 0.4em;
+    }
+
+    .meta {
+      font-size: 0.8em;
+      font-weight: 200;
+
+      * {
+        color: $off-black;
+      }
+    }
+
+    .body {
+      padding-top: 1em;
     }
   }
+}
+
+amp-replies {
+  display: block;
+  border-top: 1px solid $offest-white;
+  padding: 1em 0 0;
 
   .meta {
-    font-size: 0.8em;
-    font-weight: 200;
-
+    &,
     * {
+      font-size: 14px;
       color: $off-black;
     }
   }
 
-  .body {
-    padding-top: 1em;
+  .children {
+    list-style-type: none;
   }
 }

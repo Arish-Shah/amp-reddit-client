@@ -1,6 +1,6 @@
 import Amp, { html } from '@arish-shah/amp';
 
-const About = Amp.component('amp-about-page', {
+const AboutPage = Amp.component('amp-about-page', {
   template() {
     document.title = 'About • amp-js Reddit Client';
 
@@ -28,4 +28,4 @@ const About = Amp.component('amp-about-page', {
   }
 });
 
-export default About;
+export default AboutPage;

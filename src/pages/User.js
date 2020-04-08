@@ -2,7 +2,7 @@ import Amp, { html } from '@arish-shah/amp';
 
 import { dateFormat } from '../util/date';
 
-const User = Amp.component('amp-user-page', {
+const UserPage = Amp.component('amp-user-page', {
   props: ['details'],
   template() {
     const {
@@ -37,4 +37,4 @@ const User = Amp.component('amp-user-page', {
   }
 });
 
-export default User;
+export default UserPage;

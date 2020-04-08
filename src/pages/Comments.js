@@ -1,9 +1,13 @@
 import Amp, { html } from '@arish-shah/amp';
+
+import Comments from '../components/Comments';
+
 import { parse } from '../util/parse';
 import { dateFormat } from '../util/date';
 
-const Comments = Amp.component('amp-commments-page', {
+const CommentsPage = Amp.component('amp-commments-page', {
   props: ['data'],
+  components: [Comments],
   template() {
     const postDetails = this.props.data[0];
     const commentDetails = this.props.data[1];
@@ -11,6 +15,7 @@ const Comments = Amp.component('amp-commments-page', {
       title,
       author,
       ups,
+      url,
       created_utc,
       domain,
       selftext_html
@@ -25,16 +30,19 @@ const Comments = Amp.component('amp-commments-page', {
     }
 
     return html`
-      <h1><a>${title}</a></h1>
-      <small>${domain}</small>
-      <p class="meta">
-        ${ups} upvotes by
-        <a href=${`#/user/${author}`}>${author}</a>
-        ${dateFormat(created_utc)}
-      </p>
-      ${selftext}
+      <article class="item">
+        <h1><a href=${url}>${title}</a></h1>
+        <small>${domain}</small>
+        <p class="meta">
+          ${ups} upvotes by
+          <a href=${`#/user/${author}`}>${author}</a>
+          ${dateFormat(created_utc)}
+        </p>
+        ${selftext}
+      </article>
+      <amp-comments .data=${commentDetails}></amp-comments>
     `;
   }
 });
 
-export default Comments;
+export default CommentsPage;

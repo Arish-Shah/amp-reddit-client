@@ -28,7 +28,7 @@ const PostItem = Amp.component('amp-post-item', {
   }
 });
 
-const Feed = Amp.component('amp-feed-page', {
+const FeedPage = Amp.component('amp-feed-page', {
   props: ['data'],
   components: [PostItem],
   template() {
@@ -45,4 +45,4 @@ const Feed = Amp.component('amp-feed-page', {
   }
 });
 
-export default Feed;
+export default FeedPage;
