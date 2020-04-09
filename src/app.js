@@ -7,7 +7,7 @@ import CommentsPage from './pages/Comments';
 
 import Navbar from './components/Navbar';
 import Progress from './components/Progress';
-import { getURL, getData } from './util/getData';
+import { getURL } from './util/getURL';
 
 const Root = Amp.component('amp-root', {
   onmount() {

@@ -3,7 +3,7 @@ import Amp, { html } from '@arish-shah/amp';
 const Navbar = Amp.component('amp-navbar', {
   onmount() {
     let hash = window.location.hash;
-    if (hash === '') hash = '#/hot';
+    if (hash === '' || hash === '#/') hash = '#/hot';
 
     const links = document.querySelectorAll('nav a');
     links.forEach(link => {
