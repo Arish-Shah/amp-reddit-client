@@ -3,7 +3,7 @@ import Amp, { html } from '@arish-shah/amp';
 import { dateFormat } from '../util/date';
 
 const UserPage = Amp.component('amp-user-page', {
-  props: ['details'],
+  props: ['data'],
   template() {
     const {
       name,
@@ -11,7 +11,7 @@ const UserPage = Amp.component('amp-user-page', {
       link_karma,
       comment_karma,
       subreddit
-    } = this.props.details.data;
+    } = this.props.data;
 
     document.title = `${name} • amp-js Reddit Client`;
     const oldURL = `https://old.reddit.com/user/${name}`;

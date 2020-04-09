@@ -7,7 +7,6 @@ import CommentsPage from './pages/Comments';
 
 import Navbar from './components/Navbar';
 import Progress from './components/Progress';
-import Error from './components/Error';
 import { getURL, getData } from './util/getData';
 
 const Root = Amp.component('amp-root', {
@@ -17,29 +16,29 @@ const Root = Amp.component('amp-root', {
   },
   data: {
     cache: {},
-    current: {}
+    current: null
   },
   methods: {
     router() {
-      let hash = window.location.hash;
+      const hash = window.location.hash;
+
       if (hash.indexOf('/about') > -1) {
-        this.current = {};
+        this.current = 'about';
         this.hideLoading();
-      } else {
-        this.updateCache(getURL());
+        return;
       }
+      this.updateCache(getURL(hash));
     },
     updateCache(url) {
       if (!this.cache[url]) {
         this.showLoading();
-        getData(url)
+        fetch(url)
+          .then(response => response.json())
           .then(response => {
             this.cache[url] = response;
             this.current = this.cache[url];
           })
-          .catch(() => {
-            this.current = null;
-          })
+          .catch(error => console.log(error))
           .finally(() => this.hideLoading());
       } else {
         this.current = this.cache[url];
@@ -47,24 +46,23 @@ const Root = Amp.component('amp-root', {
       }
     },
     getPage() {
-      if (!this.current) {
-        return html`<amp-error></amp-error>`;
-      } else if (JSON.stringify(this.current) !== '{}') {
+      if (this.current === 'about') {
+        return html`<amp-about-page></amp-about-page>`;
+      }
+      if (this.current) {
         const hash = window.location.hash;
 
         if (hash.indexOf('/user/') > -1) {
-          return html`
-            <amp-user-page :details=${this.current}></amp-user-page>
-          `;
-        } else if (hash.indexOf('/comments/') > -1) {
-          return html`
-            <amp-commments-page :data=${this.current}></amp-commments-page>
-          `;
-        } else {
-          return html`<amp-feed-page :data=${this.current}></amp-feed-page>`;
+          return html`<amp-user-page
+            :data=${this.current.data}
+          ></amp-user-page>`;
         }
-      } else {
-        return html`<amp-about-page></amp-about-page>`;
+        if (hash.indexOf('/comments/') > -1) {
+          return html`<amp-commments-page
+            :data=${this.current}
+          ></amp-comments-page>`;
+        }
+        return html`<amp-feed-page :data=${this.current}></amp-feed-page>`;
       }
     },
     showLoading() {
@@ -76,15 +74,7 @@ const Root = Amp.component('amp-root', {
       progress.style.display = 'none';
     }
   },
-  components: [
-    Navbar,
-    Progress,
-    Error,
-    FeedPage,
-    CommentsPage,
-    AboutPage,
-    UserPage
-  ],
+  components: [Navbar, Progress, FeedPage, CommentsPage, AboutPage, UserPage],
   template() {
     document.title = 'amp-js Reddit Client';
 
