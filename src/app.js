@@ -24,6 +24,7 @@ const Root = Amp.component('amp-root', {
       let hash = window.location.hash;
       if (hash.indexOf('/about') > -1) {
         this.current = {};
+        this.hideLoading();
       } else {
         this.updateCache(getURL());
       }
@@ -59,11 +60,11 @@ const Root = Amp.component('amp-root', {
           return html`
             <amp-commments-page :data=${this.current}></amp-commments-page>
           `;
-        } else if (hash.indexOf('/about') > -1) {
-          return html` <amp-about-page></amp-about-page> `;
         } else {
-          return html` <amp-feed-page :data=${this.current}></amp-feed-page> `;
+          return html`<amp-feed-page :data=${this.current}></amp-feed-page>`;
         }
+      } else {
+        return html`<amp-about-page></amp-about-page>`;
       }
     },
     showLoading() {
