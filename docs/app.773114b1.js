@@ -101,31 +101,24 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
       </nav>
     `});var o=a;exports.default=o;
 },{"@arish-shah/amp":"OnpJ"}],"RRhu":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var e=t(require("@arish-shah/amp"));function r(){if("function"!=typeof WeakMap)return null;var e=new WeakMap;return r=function(){return e},e}function t(e){if(e&&e.__esModule)return e;if(null===e||"object"!=typeof e&&"function"!=typeof e)return{default:e};var t=r();if(t&&t.has(e))return t.get(e);var o={},n=Object.defineProperty&&Object.getOwnPropertyDescriptor;for(var s in e)if(Object.prototype.hasOwnProperty.call(e,s)){var a=n?Object.getOwnPropertyDescriptor(e,s):null;a&&(a.get||a.set)?Object.defineProperty(o,s,a):o[s]=e[s]}return o.default=e,t&&t.set(e,o),o}const o=e.default.component("amp-progress",{props:["show"],template:()=>e.html`
-      <div class="progress-bg">
-        <div class="progress"></div>
-      </div>
-    `});var n=o;exports.default=n;
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var e=r(require("@arish-shah/amp"));function t(){if("function"!=typeof WeakMap)return null;var e=new WeakMap;return t=function(){return e},e}function r(e){if(e&&e.__esModule)return e;if(null===e||"object"!=typeof e&&"function"!=typeof e)return{default:e};var r=t();if(r&&r.has(e))return r.get(e);var o={},n=Object.defineProperty&&Object.getOwnPropertyDescriptor;for(var a in e)if(Object.prototype.hasOwnProperty.call(e,a)){var p=n?Object.getOwnPropertyDescriptor(e,a):null;p&&(p.get||p.set)?Object.defineProperty(o,a,p):o[a]=e[a]}return o.default=e,r&&r.set(e,o),o}const o=e.default.component("amp-progress",{props:["show"],template:()=>e.html`<div class="progress"></div>`});var n=o;exports.default=n;
+},{"@arish-shah/amp":"OnpJ"}],"ldiK":[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var e=r(require("@arish-shah/amp"));function t(){if("function"!=typeof WeakMap)return null;var e=new WeakMap;return t=function(){return e},e}function r(e){if(e&&e.__esModule)return e;if(null===e||"object"!=typeof e&&"function"!=typeof e)return{default:e};var r=t();if(r&&r.has(e))return r.get(e);var n={},o=Object.defineProperty&&Object.getOwnPropertyDescriptor;for(var u in e)if(Object.prototype.hasOwnProperty.call(e,u)){var a=o?Object.getOwnPropertyDescriptor(e,u):null;a&&(a.get||a.set)?Object.defineProperty(n,u,a):n[u]=e[u]}return n.default=e,r&&r.set(e,n),n}const n=e.default.component("amp-error",{template:()=>e.html`
+      <h1>404</h1>
+      <p>Not Found</p>
+    `});var o=n;exports.default=o;
 },{"@arish-shah/amp":"OnpJ"}],"BjQj":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.getURL=exports.getData=void 0;const t=async t=>{let e=await fetch(t);return e=await e.json()};exports.getData=t;const e=()=>{const t="https://www.reddit.com",e=window.location.hash.slice(2);return e.indexOf("user/")>-1?`${t}/${e}/about.json`:`${t}/${e}.json`};exports.getURL=e;
 },{}],"A2T1":[function(require,module,exports) {
-"use strict";var e=c(require("@arish-shah/amp")),t=u(require("./pages/Feed")),a=u(require("./pages/About")),r=u(require("./pages/User")),n=u(require("./pages/Comments")),o=u(require("./components/Navbar")),s=u(require("./components/Progress")),i=require("./util/getData");function u(e){return e&&e.__esModule?e:{default:e}}function h(){if("function"!=typeof WeakMap)return null;var e=new WeakMap;return h=function(){return e},e}function c(e){if(e&&e.__esModule)return e;if(null===e||"object"!=typeof e&&"function"!=typeof e)return{default:e};var t=h();if(t&&t.has(e))return t.get(e);var a={},r=Object.defineProperty&&Object.getOwnPropertyDescriptor;for(var n in e)if(Object.prototype.hasOwnProperty.call(e,n)){var o=r?Object.getOwnPropertyDescriptor(e,n):null;o&&(o.get||o.set)?Object.defineProperty(a,n,o):a[n]=e[n]}return a.default=e,t&&t.set(e,a),a}const d=e.default.component("amp-root",{onmount(){window.addEventListener("load",this.router),window.addEventListener("hashchange",this.router)},data:{cache:{},current:{loading:!0,hash:"",data:null}},methods:{router(){let e=window.location.hash;e.indexOf("/about")>-1?this.current={hash:e,data:{},loading:!1}:this.updateCache((0,i.getURL)())},updateCache(e){this.cache[e]?this.current={hash:window.location.hash,loading:!1,data:this.cache[e]}:(this.current.loading=!0,(0,i.getData)(e).then(t=>{this.cache[e]=t,this.current={hash:window.location.hash,loading:!1,data:this.cache[e]}}).catch(e=>console.log(e)))},getPage(){if(this.current.data){const t=this.current.hash,a=this.current.loading?e.html`<amp-progress></amp-progress>`:null;return t.indexOf("/user/")>-1?e.html`
-            ${a}
-            <amp-user-page :details=${this.current.data}></amp-user-page>
+"use strict";var e=d(require("@arish-shah/amp")),t=c(require("./pages/Feed")),r=c(require("./pages/About")),a=c(require("./pages/User")),n=c(require("./pages/Comments")),o=c(require("./components/Navbar")),i=c(require("./components/Progress")),s=c(require("./components/Error")),u=require("./util/getData");function c(e){return e&&e.__esModule?e:{default:e}}function p(){if("function"!=typeof WeakMap)return null;var e=new WeakMap;return p=function(){return e},e}function d(e){if(e&&e.__esModule)return e;if(null===e||"object"!=typeof e&&"function"!=typeof e)return{default:e};var t=p();if(t&&t.has(e))return t.get(e);var r={},a=Object.defineProperty&&Object.getOwnPropertyDescriptor;for(var n in e)if(Object.prototype.hasOwnProperty.call(e,n)){var o=a?Object.getOwnPropertyDescriptor(e,n):null;o&&(o.get||o.set)?Object.defineProperty(r,n,o):r[n]=e[n]}return r.default=e,t&&t.set(e,r),r}const h=e.default.component("amp-root",{onmount(){window.addEventListener("load",this.router),window.addEventListener("hashchange",this.router)},data:{cache:{},current:{}},methods:{router(){window.location.hash.indexOf("/about")>-1?this.current={}:this.updateCache((0,u.getURL)())},updateCache(e){this.cache[e]?(this.current=this.cache[e],this.hideLoading()):(this.showLoading(),(0,u.getData)(e).then(t=>{this.cache[e]=t,this.current=this.cache[e]}).catch(()=>{this.current=null}).finally(()=>this.hideLoading()))},getPage(){if(!this.current)return e.html`<amp-error></amp-error>`;if("{}"!==JSON.stringify(this.current)){const t=window.location.hash;return t.indexOf("/user/")>-1?e.html`
+            <amp-user-page :details=${this.current}></amp-user-page>
           `:t.indexOf("/comments/")>-1?e.html`
-            ${a}
-            <amp-commments-page :data=${this.current.data}></amp-commments-page>
-          `:t.indexOf("/about")>-1?e.html`
-            ${a}
-            <amp-about-page></amp-about-page>
-          `:e.html`
-            ${a}
-            <amp-feed-page :data=${this.current.data}></amp-feed-page>
-          `}return e.html`<amp-progress></amp-progress>`}},components:[o.default,s.default,t.default,n.default,a.default,r.default],template(){return document.title="amp-js Reddit Client",e.html`
+            <amp-commments-page :data=${this.current}></amp-commments-page>
+          `:t.indexOf("/about")>-1?e.html` <amp-about-page></amp-about-page> `:e.html` <amp-feed-page :data=${this.current}></amp-feed-page> `}},showLoading(){document.querySelector("amp-progress").style.display="block"},hideLoading(){document.querySelector("amp-progress").style.display="none"}},components:[o.default,i.default,s.default,t.default,n.default,r.default,a.default],template(){return document.title="amp-js Reddit Client",e.html`
+      <amp-progress></amp-progress>
       <amp-navbar></amp-navbar>
       <main class="page">
         ${this.getPage()}
       </main>
-    `}});d.generate();
-},{"@arish-shah/amp":"OnpJ","./pages/Feed":"mjuw","./pages/About":"vrWX","./pages/User":"ERL0","./pages/Comments":"PhRy","./components/Navbar":"SuqF","./components/Progress":"RRhu","./util/getData":"BjQj"}]},{},["A2T1"], null)
-//# sourceMappingURL=app.a2b9720f.js.map
+    `}});h.generate();
+},{"@arish-shah/amp":"OnpJ","./pages/Feed":"mjuw","./pages/About":"vrWX","./pages/User":"ERL0","./pages/Comments":"PhRy","./components/Navbar":"SuqF","./components/Progress":"RRhu","./components/Error":"ldiK","./util/getData":"BjQj"}]},{},["A2T1"], null)

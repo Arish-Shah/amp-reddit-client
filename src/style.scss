@@ -51,22 +51,21 @@ button,
 }
 
 amp-progress {
-  .progress-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: $light-orange;
-    z-index: 998;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: $light-orange;
+  z-index: 998;
 
-    .progress {
-      width: 100%;
-      height: 100%;
-      background: $orange;
-      z-index: 999;
-      animation: fill 1s linear infinite;
-    }
+  .progress {
+    width: 100%;
+    display: block;
+    height: 100%;
+    background: $orange;
+    z-index: 999;
+    animation: fill 1s linear infinite;
   }
 
   @keyframes fill {
@@ -88,22 +87,22 @@ amp-navbar {
     padding: 0 1em;
 
     .icon {
-      font-size: 1.7em;
-      margin-right: 0.6em;
-      background: $orange;
-      color: $white;
-      width: 35px;
-      height: 35px;
-      border-radius: 100px;
-      padding: 0 0.5em;
-      padding-top: 1px;
+      font-size: 2.5em;
+      position: absolute;
+      margin: 0 0 0 0.25em;
       text-align: center;
       font-family: monospace;
+      -webkit-text-stroke: $orange 3px;
+      color: $white;
+      pointer-events: none;
+      cursor: default;
+      font-weight: bold;
     }
 
     ul {
       margin: 0;
       padding: 0;
+      padding-left: 3em;
       list-style-type: none;
       width: 100%;
 
