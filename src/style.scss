@@ -6,6 +6,7 @@ $off-white: #f4f4f4;
 $offest-white: #eee;
 $orange: #ff6600;
 $light-orange: #ffdac1;
+$orange-bg: hsla(24, 100%, 50%, 0.051);
 
 * {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
@@ -56,8 +57,7 @@ amp-progress {
   top: 0;
   left: 0;
   width: 100%;
-  height: 4px;
-  background: $light-orange;
+  height: 2px;
   z-index: 998;
 
   .progress {
@@ -71,7 +71,7 @@ amp-progress {
 
   @keyframes fill {
     from {
-      transform: translateX(-100%);
+      transform: translateX(-75%);
     }
     to {
       transform: translateX(100%);
@@ -85,6 +85,7 @@ amp-navbar {
     flex-direction: row;
     align-items: center;
     border-bottom: 1px solid $orange;
+    background: $orange-bg;
     padding: 0 1em;
 
     .icon {
