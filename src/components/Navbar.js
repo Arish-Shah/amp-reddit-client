@@ -17,7 +17,7 @@ const Navbar = Amp.component('amp-navbar', {
   template() {
     return html`
       <nav>
-        <div class="icon">&amp;</div>
+        <div class="icon">&</div>
         <ul>
           <li><a href="#/hot">hot</a></li>
           <li><a href="#/new">new</a></li>

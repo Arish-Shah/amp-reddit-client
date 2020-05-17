@@ -4,7 +4,7 @@
   "description": "Amp-js Powered Reddit client",
   "main": "index.js",
   "scripts": {
-    "start": "parcel src/index.html",
+    "start": "parcel src/index.html --port 5500",
     "dev": "npm start",
     "clean": "rm -rf dist .cache docs",
     "prebuild": "npm run clean",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/Arish-Shah/amp-reddit-client#readme",
   "dependencies": {
-    "@arish-shah/amp": "^0.3.8"
+    "@arish-shah/amp": "^0.3.11"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.4",
