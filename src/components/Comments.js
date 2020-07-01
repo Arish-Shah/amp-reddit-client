@@ -26,7 +26,9 @@ const Replies = Amp.component('amp-replies', {
 
 const Comments = Amp.component('amp-comments', {
   props: ['data'],
-  components: [Replies],
+  components: {
+    'amp-replies': Replies
+  },
   template() {
     let replies = copy(this.props.data.data.children);
     replies = replies.slice(0, replies.length - 2);

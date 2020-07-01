@@ -5,9 +5,11 @@ import Comments from '../components/Comments';
 import { parse } from '../util/parse';
 import { dateFormat } from '../util/date';
 
-const CommentsPage = Amp.component('amp-commments-page', {
+const CommentsPage = Amp.component('amp-comments-page', {
   props: ['data'],
-  components: [Comments],
+  components: {
+    'amp-comments': Comments
+  },
   template() {
     const postDetails = this.props.data[0];
     const commentDetails = this.props.data[1];

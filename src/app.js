@@ -58,7 +58,7 @@ const Root = Amp.component('amp-root', {
           ></amp-user-page>`;
         }
         if (hash.indexOf('/comments/') > -1) {
-          return html`<amp-commments-page
+          return html`<amp-comments-page
             :data=${this.current}
           ></amp-comments-page>`;
         }
@@ -74,7 +74,14 @@ const Root = Amp.component('amp-root', {
       progress.style.display = 'none';
     }
   },
-  components: [Navbar, Progress, FeedPage, CommentsPage, AboutPage, UserPage],
+  components: {
+    'amp-navbar': Navbar,
+    'amp-progress': Progress,
+    'amp-feed-page': FeedPage,
+    'amp-comments-page': CommentsPage,
+    'amp-about-page': AboutPage,
+    'amp-user-page': UserPage
+  },
   template() {
     document.title = 'amp-js Reddit Client';
 

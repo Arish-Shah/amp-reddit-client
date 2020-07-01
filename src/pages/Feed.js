@@ -30,7 +30,9 @@ const PostItem = Amp.component('amp-post-item', {
 
 const FeedPage = Amp.component('amp-feed-page', {
   props: ['data'],
-  components: [PostItem],
+  components: {
+    'amp-post-item': PostItem
+  },
   template() {
     const posts = this.props.data.data.children;
     return html`
